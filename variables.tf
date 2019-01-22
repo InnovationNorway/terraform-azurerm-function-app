@@ -17,10 +17,9 @@ variable "function_version" {
 }
 
 variable "account_replication_type" {
-  default = "LRS"
+  default     = "LRS"
   description = "The Storage Account replication type. See azurerm_storage_account module for posible values."
 }
-
 
 variable "app_settings" {
   default     = {}
