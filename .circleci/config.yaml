@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  fmt:
+    docker:
+      - image: hashicorp/terraform:latest
+    steps:
+      - checkout
+      - run:
+          name: terraform fmt
+          command: |
+            terraform fmt -check
+
+workflows:
+  version: 2
+  branch_check: 
+    jobs: 
+      - fmt
