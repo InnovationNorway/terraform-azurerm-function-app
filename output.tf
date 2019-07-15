@@ -1,26 +1,25 @@
-output "identity_principal_id" {
-  description = "The MSI identity principal id set on the function app."
-  value       = "${azurerm_function_app.functionapp.identity.0.principal_id}"
+output "id" {
+  value       = azurerm_function_app.main.id
+  description = "The ID of the Function App."
 }
 
-output "identity_tenant_id" {
-  description = "The MSI identity tenant id set on the function app."
-  value       = "${azurerm_function_app.functionapp.identity.0.tenant_id}"
+output "hostname" {
+  value       = azurerm_function_app.main.default_hostname
+  description = "The default hostname for the Function App."
 }
 
-output "storage_account_name" {
-  description = "The name of the storage account created for the function app"
-  value       = "${azurerm_storage_account.funcsta.name}"
+output "outbound_ips" {
+  value       = split(",", azurerm_function_app.main.outbound_ip_addresses)
+  description = "A list of outbound IP addresses for the Function App."
 }
 
-output "storage_account_connection_string" {
-  description = "Connection string to the storage account created for the function app"
-  value       = "${azurerm_storage_account.funcsta.primary_connection_string}"
-  sensitive   = true
+output "possible_outbound_ips" {
+  value       = split(",", azurerm_function_app.main.possible_outbound_ip_addresses)
+  description = "A list of possible outbound IP addresses for the Function App. Superset of outbound_ips."
 }
 
-output "storage_account_primary_access_key" {
-  description = "Primary access key to the storage account created for the function app"
-  value       = "${azurerm_storage_account.funcsta.primary_access_key}"
-  sensitive   = true
+
+output "principal_id" {
+  value       = azurerm_function_app.main.identity[0].principal_id
+  description = "The principal ID for the system-assigned identity associated with the Function App."
 }
